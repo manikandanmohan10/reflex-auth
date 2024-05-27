@@ -1,5 +1,5 @@
 import reflex as rx
 
 config = rx.Config(
-    app_name="auth_supabase",
+    app_name="admin_mobuser",
 )

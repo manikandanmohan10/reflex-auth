@@ -9,9 +9,10 @@ import reflex as rx
 from .base_state import State
 from .login import LOGIN_ROUTE, REGISTER_ROUTE
 import re
-from .supabase__client import supabase_client
+# from .supabase__client import supabase_client
+from admin_mobuser.services.auth_service import AuthService
 
-
+auth_service = AuthService()
 
 
 
@@ -75,7 +76,7 @@ class RegistrationState(State):
             return
         
         # sign up with supabase
-        supabase_client().auth.sign_up({
+        auth_service.signup({
             "email": email,
             "password": password,
         })

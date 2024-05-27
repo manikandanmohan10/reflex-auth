@@ -2,8 +2,9 @@
 import reflex as rx
 
 from .base_state import State
-from .supabase__client import supabase_client
+from admin_mobuser.services.auth_service import AuthService
 
+auth_service = AuthService()
 
 
 LOGIN_ROUTE = "/login"
@@ -34,7 +35,7 @@ class LoginState(State):
         password = form_data["password"]
 
         try:
-            user_sign_in = supabase_client().auth.sign_in_with_password({"email": email, "password": password})
+            user_sign_in = auth_service.retrieve_user(email, password)
             self.auth_token = user_sign_in.session.access_token
             self.error_message = ""
             return LoginState.redir()  # type: ignore
